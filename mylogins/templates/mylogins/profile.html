@@ -1,0 +1,102 @@
+{% extends 'myapplogin/base.html'%}
+
+
+
+{% block section %}
+<div id="page-content">
+
+	<div class="row">
+		<div class="col-lg-6">
+			<div class="panel panel-body">
+				<div class="nano-content" tabindex="0" style="right: -15px;">
+					
+					<!-- Simple profile -->
+					<div class="text-center pad-all">
+						<div class="pad-ver">
+
+
+							{% if profile_details.picture_url %}
+								<img src="{{profile_details.picture_url}}" class="img-lg img-border img-circle" alt="Profile Picture">
+							{% else%}
+								<img src="/static/img/av1.png" class="img-lg img-border img-circle" alt="Profile Picture">
+							{% endif%}
+						
+						</div>
+						<h4 class="text-lg text-overflow mar-no">
+							{% if request.user.get_full_name %}
+								{{ request.user.get_full_name }}
+							{% else %}
+								{{ request.user.username }}
+							{% endif %}
+						</h4>
+						<p class="text-sm">{{profile_details.headline}}</p>
+
+						<a href='{{profile_details.public_profile_url}}' class="btn btn-block btn-success">Linkedin Profile</a>
+					</div>
+					<hr>
+					<ul class="list-group bg-trans">
+
+						<!-- Profile Details -->
+						<li class="list-group-item list-item-sm">
+							<i class="fa fa-home fa-fw"></i> {{profile_details.location.name}}
+						</li>
+						<li class="list-group-item list-item-sm">
+							<i class="fa fa-envelope-o fa-fw"></i> {{profile_details.email_address}}
+						</li>
+						<li class="list-group-item list-item-sm text-primary text-semibold">
+							<a href="#" class="btn-link">
+								<i class="fa fa-globe fa-fw"></i> {{profile_details.public_profile_url}}
+							</a>
+						</li>
+					</ul>
+					<hr>
+					<div class="pad-hor">
+						<h5>About Me</h5>
+						<small class="text-thin">{{profile_details.summary}}</small>
+					</div>
+					<hr>
+				</div>
+			</div>
+
+
+		</div>
+		<div class="col-lg-6">
+
+
+
+
+
+			<div class="panel panel-mint">
+				<div class="panel-heading">
+					<h3 class="panel-title">Working Details</h3>
+				</div>
+				<div class="panel panel-body">
+
+					<div class="panel text-center">
+						<div class="panel-body">
+							
+							<p>{{profile_details.positions.position.title}}</p>
+							<p>at</p>
+							<h4 class="mar-no">{{profile_details.positions.position.company.name}}</h4>
+						</div>
+						<div class="pad-all">
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}
